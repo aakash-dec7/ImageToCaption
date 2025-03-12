@@ -1,0 +1,103 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/imgtocap/component/s1_data_ingestion.py
+    deps:
+    - path: src/imgtocap/component/s1_data_ingestion.py
+      hash: md5
+      md5: f86e4654059fc6aaaa615ca65ecc48e7
+      size: 3429
+    outs:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: 3a0d28a27f6315b7916868ad4afb8e1e.dir
+      size: 2244582423
+      nfiles: 16194
+  data_preprocessing:
+    cmd: python src/imgtocap/component/s3_data_preprocessing.py
+    deps:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: 3a0d28a27f6315b7916868ad4afb8e1e.dir
+      size: 2244582423
+      nfiles: 16194
+    - path: src/imgtocap/component/s3_data_preprocessing.py
+      hash: md5
+      md5: 7da8c2e891af693321b560f95b2f352e
+      size: 6566
+    outs:
+    - path: artifacts/data_preprocessing
+      hash: md5
+      md5: 52f9bef6d5a96dfd23d0518ea64a56ae.dir
+      size: 4224696981
+      nfiles: 7
+  data_transformation:
+    cmd: python src/imgtocap/component/s4_data_transformation.py
+    deps:
+    - path: artifacts/data_preprocessing
+      hash: md5
+      md5: 52f9bef6d5a96dfd23d0518ea64a56ae.dir
+      size: 4224696981
+      nfiles: 7
+    - path: src/imgtocap/component/s4_data_transformation.py
+      hash: md5
+      md5: efc61e69b0d5a109dd03c4e1a32d3f0a
+      size: 3069
+    outs:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: e8f37f2772816672a9d10a0a96bcd2e7.dir
+      size: 4223792434
+      nfiles: 2
+  model:
+    cmd: python src/imgtocap/component/model.py
+    deps:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: e8f37f2772816672a9d10a0a96bcd2e7.dir
+      size: 4223792434
+      nfiles: 2
+    - path: src/imgtocap/component/model.py
+      hash: md5
+      md5: efc9d2e318ad52a4c8c8fefeab51a957
+      size: 2731
+  model_training:
+    cmd: python src/imgtocap/component/s5_model_training.py
+    deps:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: e8f37f2772816672a9d10a0a96bcd2e7.dir
+      size: 4223792434
+      nfiles: 2
+    - path: src/imgtocap/component/model.py
+      hash: md5
+      md5: efc9d2e318ad52a4c8c8fefeab51a957
+      size: 2731
+    - path: src/imgtocap/component/s5_model_training.py
+      hash: md5
+      md5: c26eb0a4c1e92c58dc909fe48dac1205
+      size: 4939
+    outs:
+    - path: artifacts/model
+      hash: md5
+      md5: af313b2c019ae1118d3a9f5c23a14f57.dir
+      size: 726297030
+      nfiles: 1
+  model_evaluation:
+    cmd: python src/imgtocap/component/s6_model_evaluation.py
+    deps:
+    - path: artifacts/model
+      hash: md5
+      md5: af313b2c019ae1118d3a9f5c23a14f57.dir
+      size: 726297030
+      nfiles: 1
+    - path: src/imgtocap/component/s6_model_evaluation.py
+      hash: md5
+      md5: cbc1aa133bd7cb09fbc3f63c366d0e3b
+      size: 7548
+    outs:
+    - path: artifacts/evaluation
+      hash: md5
+      md5: 2acddeb4c34223bd7cdff56ec7f2f76d.dir
+      size: 46
+      nfiles: 1
