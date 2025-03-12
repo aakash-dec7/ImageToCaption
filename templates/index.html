@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Captioning</title>
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background: #ffffff;
+            border-radius: 12px;
+            color: #333;
+        }
+
+        input,
+        button,
+        textarea {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            font-family: inherit;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            background: #d0e1f9;
+        }
+
+        button {
+            cursor: pointer;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #0f9b8e, #32de62);
+        }
+
+        textarea {
+            resize: none;
+            background: #f0f0f0;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <h2 style="color: #1e3c72">Upload an Image for Captioning</h2>
+        <form action="/caption" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required />
+            <button type="submit">Generate Caption</button>
+        </form>
+
+        {% if image_url %}
+        <img src="{{ image_url }}" class="image-preview" alt="Uploaded Image" />
+        {% endif %} {% if caption_text %}
+        <h3 style="color: #2a5298">Generated Caption:</h3>
+        <textarea readonly rows="4">{{ caption_text }}</textarea>
+        {% endif %}
+    </div>
+</body>
+
+</html>
