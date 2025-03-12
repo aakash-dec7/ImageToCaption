@@ -1,0 +1,17 @@
+dagshub
+ensure
+Flask
+mlflow
+mlflow_skinny
+Pillow
+python_box
+PyYAML
+PyYAML
+setuptools
+sentencepiece
+torch
+torchvision
+tqdm
+transformers
+dvc
+-e .
