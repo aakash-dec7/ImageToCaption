@@ -1,0 +1,44 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source:
+    image_url: https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/Flickr8k_Dataset.zip
+    caption_url: https://github.com/jbrownlee/Datasets/releases/download/Flickr8k/Flickr8k_text.zip
+  download_path: artifacts/data_ingestion/data.csv
+
+data_preprocessing:
+  root_dir: artifacts/data_preprocessing
+  image_path: artifacts/data_ingestion/Flicker8k_Dataset
+  train_ids_path: artifacts/data_ingestion/Flickr_8k.trainImages.txt
+  test_ids_path: artifacts/data_ingestion/Flickr_8k.testImages.txt
+  caption_path: artifacts/data_ingestion/Flickr8k.token.txt
+  tokenizer_path: artifacts/data_preprocessing
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  train_datadict_path: artifacts/data_preprocessing/train_datadict.pkl
+  test_datadict_path: artifacts/data_preprocessing/test_datadict.pkl
+
+model:
+  tokenizer_path: artifacts/data_preprocessing/tokenizer
+
+model_training:
+  root_dir: artifacts/model
+  train_dataset_path: artifacts/data_transformation/train_dataset.pth
+
+model_evaluation:
+  root_dir: artifacts/evaluation
+  model_path: artifacts/model/model.pth
+  test_dataset_path: artifacts\data_transformation\test_dataset.pth
+  metrics_path: artifacts/evaluation
+
+experiment_tracking:
+  repo_name: ImageToCaption
+  repo_owner: aakash-dec7
+  mlflow:
+    uri: https://dagshub.com/aakash-dec7/ImageToCaption.mlflow
+
+prediction:
+  model_path: artifacts/model/model.pth
+  tokenizer_path: artifacts/data_preprocessing/tokenizer
