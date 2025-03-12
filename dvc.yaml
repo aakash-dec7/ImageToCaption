@@ -6,12 +6,6 @@ stages:
     outs:
       - artifacts/data_ingestion
 
-  data_validation:
-    cmd: python src/seq2seq/component/s2_data_validation.py
-    deps:
-      - src/seq2seq/component/s2_data_validation.py
-      - artifacts/data_ingestion
-
   data_preprocessing:
     cmd: python src/seq2seq/component/s3_data_preprocessing.py
     deps:
