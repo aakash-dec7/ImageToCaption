@@ -41,7 +41,7 @@ The dataset consists of:
 
 ## Model Architecture  
 
-The **ImageToCaption** model consists of the following components:
+The **Image-to-Caption** model consists of the following components:
 
 ### 1. **Image Encoder**  
 
@@ -338,7 +338,11 @@ The trained model will be saved in the project directory: `artifacts/model/model
 
 ### Create an ECR Repository
 
-Create an Amazon ECR repository with the same name as specified in `setup.py`:
+The trained model will be saved in:
+
+```sh
+artifacts/model/model.pth
+```
 
 ```python
 setup(
@@ -384,7 +388,7 @@ git push origin main
 
 ### CI/CD Automation
 
-GitHub Actions automates the CI/CD process, ensuring that the model is built, tested, and deployed on the EKS cluster.
+GitHub Actions will automate the CI/CD process, ensuring that the model is built, tested, and deployed to **Amazon EKS**.
 
 ## Accessing the Deployed Application
 
@@ -405,7 +409,7 @@ Copy the `EXTERNAL-IP` and append `:5000` to access the application:
 http://<EXTERNAL-IP>:5000
 ```
 
-The ImageToCaption application is now deployed and accessible online.
+The Image-to-Caption application is now deployed and accessible online.
 
 ## License
 
