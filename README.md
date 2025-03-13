@@ -405,7 +405,7 @@ Copy the `EXTERNAL-IP` and append `:5000` to access the application:
 http://<EXTERNAL-IP>:5000
 ```
 
-The Image-to-Caption application is now deployed and accessible online.
+The ImageToCaption application is now deployed and accessible online.
 
 ## License
 
