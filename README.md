@@ -406,3 +406,7 @@ http://<EXTERNAL-IP>:5000
 ```
 
 The Image-to-Caption application is now deployed and accessible online.
+
+## License
+
+This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
