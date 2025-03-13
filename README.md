@@ -1,6 +1,6 @@
 # Image to Caption
 
-This project implements a **Multimodal Model** that integrates both image and text processing components to generate meaningful captions from images.
+This repository contains a **Multimodal Model** that integrates both image and text processing components to generate meaningful captions from images.
 
 ## Features
 
