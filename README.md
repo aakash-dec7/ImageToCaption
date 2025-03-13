@@ -1,12 +1,12 @@
 # Image to Caption
 
-This project implements a **multimodal model** that integrates both image and text processing components to generate meaningful captions from images.
+This project implements a **Multimodal Model** that integrates both image and text processing components to generate meaningful captions from images.
 
 ## Features
 
 - **PyTorch** implementation
 - **Data Version Control (DVC)** for managing training and evaluation pipelines
-- **AutoTokenizer**: Utilizes `AutoTokenizer` (`bert-base-uncased`) for efficient text processing
+- **AutoTokenizer**: Utilizes Pretrained BERT tokenizer(`bert-base-uncased`) for efficient text processing
 - **MLflow and DagsHub** for experiment tracking and model management
 - **Amazon Elastic Container Registry (ECR)** for storing Docker images
 - **Amazon Elastic Kubernetes Service (EKS)** for deploying the model as a containerized application
@@ -35,32 +35,26 @@ The dataset consists of:
 
 ## Model Architecture  
 
-The model integrates image and text processing components to generate captions. It consists of three main modules:
+The ImageToCaption model consists of the following components:
 
 ### 1. **Image Encoder**  
 
-- Uses **ResNet-50** (pretrained on ImageNet) as a feature extractor
-- Removes the final classification layer to obtain a **2048-dimensional feature vector** per image
-- Extracted image features are **frozen** (no gradient updates) to retain pretrained knowledge
+- Uses **ResNet-50** (pretrained on ImageNet) with `IMAGENET1K_V1` weights as a feature extractor.
+- Removes the final classification layer to obtain a **2048-dimensional feature vector** per image.
+- Extracted image features are **frozen** (no gradient updates) to retain pretrained knowledge.
 
 ### 2. **Text Decoder**  
 
-- Based on a **pretrained BERT model** (`bert-base-uncased`)
-- Processes tokenized text input and generates **hidden representations** using BERT’s transformer layers
-- Expands token embedding size to match the tokenizer vocabulary
+- Based on a **pretrained BERT model** (`bert-base-uncased`).
+- Processes tokenized text input and generates **hidden representations** using BERT’s transformer layers.
+- Expands token embedding size to match the tokenizer vocabulary.
 
 ### 3. **Fusion and Projection**  
 
-- A **linear projection layer** reduces image feature dimensions from **2048 to 768** to match BERT hidden size
-- Projected image features are **repeated** across the sequence length of text features
-- Image and text embeddings are **concatenated** along the feature dimension
-- A **fully connected fusion layer** refines the combined representation using **ReLU activation** and **dropout**
-
-### **Pretrained Components Used**  
-
-- **Image Encoder**: `ResNet-50` with `IMAGENET1K_V1` weights
-- **Text Decoder**: `bert-base-uncased` from Hugging Face Transformers
-- **Tokenizer**: Pretrained BERT tokenizer for text processing
+- A **linear projection layer** reduces image feature dimensions from **2048 to 768** to match BERT hidden size.
+- Projected image features are **repeated** across the sequence length of text features.
+- Image and text embeddings are **concatenated** along the feature dimension.
+- A **fully connected fusion layer** refines the combined representation using **ReLU activation** and **dropout**.
 
 #### Model Summary
 
