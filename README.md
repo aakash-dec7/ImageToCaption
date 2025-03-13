@@ -27,7 +27,7 @@ Ensure the following dependencies and services are installed and configured:
 - AWS CLI
 - Docker Desktop (for local image testing)
 - DagsHub Account (for experiment tracking)
-- Git
+- Git & GitHub (for version control)
 
 ## Dataset
 
@@ -41,7 +41,7 @@ The dataset consists of:
 
 ## Model Architecture  
 
-The ImageToCaption model consists of the following components:
+The **ImageToCaption** model consists of the following components:
 
 ### 1. **Image Encoder**  
 
@@ -57,7 +57,7 @@ The ImageToCaption model consists of the following components:
 
 ### 3. **Fusion and Projection**  
 
-- A **linear projection layer** reduces image feature dimensions from **2048 to 768** to match BERT hidden size.
+- A **linear projection layer** reduces image feature dimensions from **2048 to 768** to match `BERT` hidden size.
 - Projected image features are **repeated** across the sequence length of text features.
 - Image and text embeddings are **concatenated** along the feature dimension.
 - A **fully connected fusion layer** refines the combined representation using **ReLU activation** and **dropout**.
