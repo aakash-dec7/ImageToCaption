@@ -4,19 +4,19 @@ This project implements a **Multimodal Model** that integrates both image and te
 
 ## Features
 
-- **PyTorch** implementation
+**PyTorch Implementation**: Fully built using `PyTorch` for efficient deep learning workflows.
 
-- **Data Version Control (DVC)** for managing training and evaluation pipelines
+**Data Version Control (DVC)**: Manages training and evaluation pipelines effectively.
 
-- **AutoTokenizer**: Utilizes Pretrained BERT tokenizer(`bert-base-uncased`) for efficient text processing
+**Transformer AutoTokenizer**: Uses `bert-base-uncased` for robust text processing.
 
-- **MLflow and DagsHub** for experiment tracking and model management
+**Experiment Tracking & Model Management**: Integrated with `MLflow` and `DagsHub` for seamless tracking.
 
-- **Amazon Elastic Container Registry (ECR)** for storing Docker images
+**Containerized Deployment**: Docker images stored in `Amazon Elastic Container Registry (ECR)`.
 
-- **Amazon Elastic Kubernetes Service (EKS)** for deploying the model as a containerized application
+**Scalable Deployment**: Model deployed on `Amazon Elastic Kubernetes Service (EKS)` for production readiness.
 
-- **Complete CI/CD Implementation** using AWS and GitHub Actions for automated deployment
+**Automated CI/CD**: End-to-end deployment automation using AWS and GitHub Actions.
 
 ## Prerequisites
 
